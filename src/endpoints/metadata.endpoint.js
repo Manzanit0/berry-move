@@ -1,4 +1,5 @@
 'use strict';
+const fs = require('fs');
 
 const express = require('express'),
     router = express.Router(),
@@ -6,23 +7,24 @@ const express = require('express'),
     unzip = require('unzip')
 
 const retrieve = (req, res) => {
+    //TODO: move the options to the header.
     const options = {
         username: req.body.username,
-        password: req.body.password,
-        loginUrl: req.loginUrl,
-        directory: req.unZipDir //TODO: this isn't correct. Check API.
+        password: req.body.password
     };
 
-    jsforce.retrieveByTypes('ApexClass:MyClass', options) //TODO: The Metadata should come as a body JSON too.
+    //TODO: the metadata types should come in the body as a JSON.
+    jsforce.retrieveByTypes('ApexClass:AccountHandler', options)
         .then(results => {
-            console.log(result);
-            fs.createReadStream(result.zipFile).pipe(unzip.Extract({ path: './' }));
+            fs.writeFileSync('./package.zip', new Buffer(results.zipFile, 'base64'));
+            res.send(results);
         })
         .catch(err => {
             console.log(err);
+            res.send(err);
     });
 };
 
-router.get('/retrieve', retrieve);
+router.post('/retrieve', retrieve);
 
 module.exports = router;
