@@ -1,0 +1,17 @@
+{
+  "name": "berry-move",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manzanit0",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "jsforce-metadata-tools": "^1.3.0",
+    "unzip": "^0.1.11"
+  }
+}
