@@ -1,6 +1,9 @@
 ## Berry Move
 Quick Node app to deploy metadata between salesforce orgs.
 
+#### Initial Web preview
+![Alt text](berry-preview.png?raw=true "Berry Preview")
+
 #### Example Header
 The header may contain all the options that `jsforce-metadata-tools` with the same parameter names. For more info check their repository [here](https://github.com/jsforce/jsforce-metadata-tools).
 
