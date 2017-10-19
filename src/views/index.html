@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html ng-app="Berry-move">
+<!-- style="background-image:url(../web-ui/resources/img/login-background.jpg)" -->
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.css"
+    />
+</head>
+
+<body ng-controller="SelectedMetadataController">
+    <!--  HEADER -->
+    <div class="slds-page-header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                    <svg class="slds-icon" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../@salesforce-ux/design-system/assets/icons/standard-sprite/svg/symbols.svg#opportunity"></use>
+                    </svg>
+                </span>
+            </div>
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle">Berry-move</h1>
+                <p class="slds-text-body_small slds-line-height_reset">Deploy salesforce metadata on the go :)</p>
+            </div>
+        </div>
+    </div>
+    <!-- /HEADER  -->
+
+    <!--  INSERTION PANEL-->
+    <div class="slds-grid slds-grid_pull-padded-medium slds-m-around_medium">
+        <div class="slds-col">
+            <div class="slds-panel slds-grid slds-grid_vertical slds-nowrap">
+                <div class="slds-panel__section">
+                    <div class="slds-form slds-form_stacked">
+                        <div class="slds-form-element slds-col slds-m-bottom_small">
+                            <div class="slds-form-element">
+                                <button class="slds-button slds-button_brand">Connect to Origin</button>
+                            </div>
+                            <div class="slds-form-element">
+                                <button class="slds-button slds-button_brand">Connect to Dest.</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col">
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <span class="slds-icon_container slds-icon-standard-contact" title="description of icon when needed">
+                                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../@salesforce-ux/design-system/assets/icons/standard-sprite/svg/symbols.svg#shipment" />
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2>
+                                    <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="[object Object]">
+                                        <span class="slds-text-heading_medium">Availiable metadata for deployment</span>
+                                    </a>
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="slds-no-flex">
+                            <button class="slds-button slds-button_neutral">Add</button>
+                        </div>
+                    </div>
+                    <div class="slds-card__body">
+                        <div class="slds-panel slds-grid slds-grid_vertical slds-nowrap slds-m-around_medium slds-p-horizontal_medium slds-p-vertical_small">
+                            <div class="slds-section slds-is-open">
+                                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                    <thead>
+                                        <tr class="slds-text-title_caps">
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Metadata Name">Name</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Metadata Type">Type</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Last Modified Date">Last Modified Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-label="Account Name">
+                                                <div class="slds-truncate" title="Cloudhub">MyTriggerHandler.cls</div>
+                                            </td>
+                                            <td data-label="Close Date">
+                                                <div class="slds-truncate" title="4/14/2015">ApexClass</div>
+                                            </td>
+                                            <td data-label="Prospecting">
+                                                <div class="slds-truncate" title="Prospecting">24/02/1993</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="Account Name">
+                                                <div class="slds-truncate" title="Cloudhub">Contact.MyField__c</div>
+                                            </td>
+                                            <td data-label="Close Date">
+                                                <div class="slds-truncate" title="4/14/2015">CustomField</div>
+                                            </td>
+                                            <td data-label="Prospecting">
+                                                <div class="slds-truncate" title="Prospecting">01/02/1993</div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+    </div>
+
+    <!-- SELECTED METADATA PANEL -->
+    <article class="slds-card slds-m-around_medium">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-contact">
+                        <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../@salesforce-ux/design-system/assets/icons/standard-sprite/svg/symbols.svg#sales_path"
+                            />
+                        </svg>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2>
+                        <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="[object Object]">
+                            <span class="slds-text-heading_medium">Selected metadata</span>
+                        </a>
+                    </h2>
+                </div>
+            </header>
+            <div class="slds-no-flex">
+                <button class="slds-button slds-button_neutral">Deploy!</button>
+            </div>
+        </div>
+        <div class="slds-card__body">
+            <div class="slds-panel slds-grid slds-grid_vertical slds-nowrap slds-m-around_medium slds-p-horizontal_medium slds-p-vertical_small">
+                <div class="slds-section slds-is-open">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Metadata Name">Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Metadata Type">Type</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Last Modified Date">Last Modified Date</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-label="Account Name">
+                                    <div class="slds-truncate" title="Cloudhub">MyTriggerHandler.cls</div>
+                                </td>
+                                <td data-label="Close Date">
+                                    <div class="slds-truncate" title="4/14/2015">ApexClass</div>
+                                </td>
+                                <td data-label="Prospecting">
+                                    <div class="slds-truncate" title="Prospecting">24/02/1993</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-label="Account Name">
+                                    <div class="slds-truncate" title="Cloudhub">Contact.MyField__c</div>
+                                </td>
+                                <td data-label="Close Date">
+                                    <div class="slds-truncate" title="4/14/2015">CustomField</div>
+                                </td>
+                                <td data-label="Prospecting">
+                                    <div class="slds-truncate" title="Prospecting">01/02/1993</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer class="slds-card__footer">
+            <a href="javascript:void(0);">View All
+                <span class="slds-assistive-text">entity type</span>
+            </a>
+        </footer>
+    </article>
+</body>
+
+</html>

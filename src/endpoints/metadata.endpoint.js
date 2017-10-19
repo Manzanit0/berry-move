@@ -25,6 +25,14 @@ const retrieve = (req, res) => {
     });
 };
 
+const deploy = (req, res) => {
+    //TODO: just upload the zip to an org?
+};
+
+const deployBetweenOrgs = (req, res) => {
+    //TODO: simply retrieve + deploy.
+};
+
 router.post('/retrieve', retrieve);
 
 module.exports = router;
