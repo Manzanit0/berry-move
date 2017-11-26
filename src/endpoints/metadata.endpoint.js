@@ -1,38 +1,56 @@
 'use strict';
-const fs = require('fs');
 
 const express = require('express'),
     router = express.Router(),
-    jsforce = require('jsforce-metadata-tools'),
-    unzip = require('unzip')
+    metadataHelper = require('../helpers/metadata.helper');
 
 const retrieve = (req, res) => {
-    //TODO: move the options to the header.
     const options = {
         username: req.body.username,
         password: req.body.password
     };
 
-    //TODO: the metadata types should come in the body as a JSON.
-    jsforce.retrieveByTypes('ApexClass:AccountHandler', options)
-        .then(results => {
-            fs.writeFileSync('./package.zip', new Buffer(results.zipFile, 'base64'));
-            res.send(results);
-        })
-        .catch(err => {
-            console.log(err);
-            res.send(err);
-    });
+    metadataHelper.retrieve('./package.zip', res.body.metadata, options)
+        .then(result => res.status(200).send(result))
+        .catch(err => res.status(500).send(err));
 };
 
 const deploy = (req, res) => {
-    //TODO: just upload the zip to an org?
+    const options = {
+        username: req.body.username,
+        password: req.body.password
+    };
+
+    metadataHelper.deploy('./package.zip', options)
+        .then(result => res.status(200).send(result))
+        .catch(err => res.status(500).send(err));
 };
 
-const deployBetweenOrgs = (req, res) => {
-    //TODO: simply retrieve + deploy.
+const deployBetweenOrgs = async (req, res) => {
+    const originOptions = {
+        username: req.body.originUsername,
+        password: req.body.originPassword
+    };
+
+    const destOptions = {
+        username: req.body.destinationUsername,
+        password: req.body.destinationPassword
+    };
+
+    try {
+        const retrieveResult = await metadataHelper.retrieve('./package.zip', req.body.metadata, originOptions);
+        const deployResult = await metadataHelper.deploy('./package.zip', destOptions);
+
+        res.status(200).send({retrieve: retrieveResult, deploy: deployResult});
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).send({message: err.toString()});
+    }
 };
 
 router.post('/retrieve', retrieve);
+router.post('/deploy', deploy);
+router.post('/fullDeploy', deployBetweenOrgs);
 
 module.exports = router;
