@@ -1,8 +1,7 @@
 ## Berry Move
 Quick Node app to deploy metadata between salesforce orgs.
 
-#### Initial Web preview
-![Alt text](berry-preview.png?raw=true "Berry Preview")
+This branch has been created to contain the code referenced in the article [`The origin of berry-move`](http://manzanos-tech-blog.ghost.io/the-origin-of-berry-move/).
 
 #### Example Header
 The header may contain all the options that `jsforce-metadata-tools` with the same parameter names. For more info check their repository [here](https://github.com/jsforce/jsforce-metadata-tools).
@@ -11,19 +10,11 @@ The header may contain all the options that `jsforce-metadata-tools` with the sa
 {
 	"username": "javier.garcia@berrymove.dev",
 	"password": "<password><SecurityToken>",
-	"loginUrl": "http://login.salesforce.com"
-}
-```
-
-#### Example Body [WIP]
-This example will retrieve the classes `ClassOne.cls`, `ClassTwo.cls` and `ClassThree.cls` as well as all the Visualforce pages in the organization:
-
-```
-{
-    "ApexClass":[ClassOne, ClassTwo, ClassThree],
-    "ApexPage": [*]
+	"loginUrl": "http://login.salesforce.com",
+	"metadata": "ApexClass:AccountHandler"
 }
 ```
 
 #### Availiable Endpoints
 Metadata retrieval endpoint: `http://localhost:3000/metadata/retrieve`
+Metadata deployment endpoint: `http://localhost:3000/metadata/deploy`
